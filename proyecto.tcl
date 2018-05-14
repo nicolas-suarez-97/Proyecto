@@ -11,7 +11,7 @@ catch {package require Img}
 
 foreach img {
 
-        {{[file join / home nicolas Descargas mapa.png]} {user image} user {}}
+        {{[file join / home nicolas Dropbox Universidad {SEMESTRE VI} {2. Análisis Numérico} Proyecto mapa.png]} {user image} user {}}
 
             } {
 # from vTcl:image:dump_create_image_footer
@@ -84,7 +84,7 @@ proc vTclWindow.top37 {base} {
     vTcl::widgets::core::toplevel::createCmd $top -class Toplevel \
         -menu "$top.m38" -background {#d9d9d9} -highlightcolor black 
     wm focusmodel $top passive
-    wm geometry $top 1002x721+272+121
+    wm geometry $top 1002x721+349+169
     update
     # set in toplevel.wgt.
     global vTcl
@@ -115,7 +115,7 @@ proc vTclWindow.top37 {base} {
     vTcl:DefineAlias "$site_3_0.ent41" "Entry2" vTcl:WidgetProc "Toplevel1" 1
     ttk::combobox $site_3_0.tCo43 \
         -values 'Papa','Yuca','Cafe' -justify center -state readonly \
-        -foreground {} -background {} -takefocus {} 
+        -textvariable combo2 -foreground {} -background {} -takefocus {} 
     vTcl:DefineAlias "$site_3_0.tCo43" "TCombobox1" vTcl:WidgetProc "Toplevel1" 1
     label $site_3_0.lab44 \
         -activebackground {#f9f9f9} -activeforeground black \
@@ -163,12 +163,6 @@ proc vTclWindow.top37 {base} {
         -background {#d9d9d9} -foreground {#000000} -highlightcolor black \
         -text {Producción Esperada} 
     vTcl:DefineAlias "$site_3_0.lab45" "Label8" vTcl:WidgetProc "Toplevel1" 1
-    ttk::style configure TButton -background #d9d9d9
-    ttk::style configure TButton -foreground #000000
-    ttk::style configure TButton -font TkDefaultFont
-    ttk::button $site_3_0.tBu48 \
-        -command graficar -takefocus {} -text {Graficar Tiempo} 
-    vTcl:DefineAlias "$site_3_0.tBu48" "TButton2" vTcl:WidgetProc "Toplevel1" 1
     entry $site_3_0.ent48 \
         -background white -font TkFixedFont -foreground {#000000} \
         -highlightcolor black -insertbackground black -justify center \
@@ -193,7 +187,7 @@ proc vTclWindow.top37 {base} {
         -activebackground {#f9f9f9} -activeforeground black \
         -background {#ffffff} -borderwidth 3 -compound center \
         -foreground {#000000} -highlightcolor black \
-        -image [vTcl:image:get_image [file join / home nicolas Descargas mapa.png]] 
+        -image [vTcl:image:get_image [file join / home nicolas Dropbox Universidad {SEMESTRE VI} {2. Análisis Numérico} Proyecto mapa.png]] 
     vTcl:DefineAlias "$site_3_0.lab50" "Map" vTcl:WidgetProc "Toplevel1" 1
     button $site_3_0.but52 \
         -activebackground {#d9d9d9} -activeforeground black \
@@ -203,11 +197,13 @@ proc vTclWindow.top37 {base} {
     ttk::combobox $site_3_0.tCo38 \
         \
         -values 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre' \
-        -justify center -state readonly -textvariable combobox \
+        -justify center -state readonly -textvariable combo1 \
         -foreground {#000000} -background {#ffffff} -takefocus {} 
     vTcl:DefineAlias "$site_3_0.tCo38" "TCombobox2" vTcl:WidgetProc "Toplevel1" 1
     label $site_3_0.lab48 \
-        -background {#ffffff} -foreground {#000000} -text {$} 
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#ffffff} -foreground {#000000} -highlightcolor black \
+        -text {$} 
     vTcl:DefineAlias "$site_3_0.lab48" "Label12" vTcl:WidgetProc "Toplevel1" 1
     place $site_3_0.ent41 \
         -in $site_3_0 -x 290 -y 90 -anchor nw -bordermode ignore 
@@ -223,26 +219,23 @@ proc vTclWindow.top37 {base} {
     place $site_3_0.lab40 \
         -in $site_3_0 -x 20 -y 150 -anchor nw -bordermode ignore 
     place $site_3_0.tBu41 \
-        -in $site_3_0 -x 290 -y 190 -width 163 -relwidth 0 -height 28 \
+        -in $site_3_0 -x 150 -y 270 -width 163 -relwidth 0 -height 28 \
         -relheight 0 -anchor nw -bordermode ignore 
     place $site_3_0.lab42 \
         -in $site_3_0 -x 280 -y 20 -anchor nw -bordermode ignore 
     place $site_3_0.lab41 \
-        -in $site_3_0 -x 30 -y 340 -anchor nw -bordermode ignore 
+        -in $site_3_0 -x 30 -y 400 -anchor nw -bordermode ignore 
     place $site_3_0.lab43 \
-        -in $site_3_0 -x 30 -y 390 -anchor nw -bordermode ignore 
+        -in $site_3_0 -x 30 -y 470 -anchor nw -bordermode ignore 
     place $site_3_0.lab45 \
-        -in $site_3_0 -x 30 -y 420 -anchor nw -bordermode ignore 
-    place $site_3_0.tBu48 \
-        -in $site_3_0 -x 150 -y 500 -width 163 -relwidth 0 -height 28 \
-        -relheight 0 -anchor nw -bordermode ignore 
+        -in $site_3_0 -x 30 -y 510 -anchor nw -bordermode ignore 
     place $site_3_0.ent48 \
         -in $site_3_0 -x 290 -y 60 -anchor nw -bordermode ignore 
     place $site_3_0.lab46 \
-        -in $site_3_0 -x 290 -y 380 -width 159 -relwidth 0 -height 21 \
+        -in $site_3_0 -x 290 -y 470 -width 159 -relwidth 0 -height 21 \
         -relheight 0 -anchor nw -bordermode ignore 
     place $site_3_0.lab47 \
-        -in $site_3_0 -x 290 -y 420 -width 159 -relwidth 0 -height 21 \
+        -in $site_3_0 -x 290 -y 510 -width 159 -relwidth 0 -height 21 \
         -relheight 0 -anchor nw -bordermode ignore 
     place $site_3_0.lab49 \
         -in $site_3_0 -x 470 -y 360 -width 489 -relwidth 0 -height 311 \
@@ -251,13 +244,13 @@ proc vTclWindow.top37 {base} {
         -in $site_3_0 -x 470 -y 60 -width 489 -relwidth 0 -height 281 \
         -relheight 0 -anchor nw -bordermode ignore 
     place $site_3_0.but52 \
-        -in $site_3_0 -x 150 -y 560 -width 159 -relwidth 0 -height 29 \
+        -in $site_3_0 -x 150 -y 580 -width 159 -relwidth 0 -height 29 \
         -relheight 0 -anchor nw -bordermode ignore 
     place $site_3_0.tCo38 \
         -in $site_3_0 -x 290 -y 120 -width 167 -relwidth 0 -height 21 \
         -relheight 0 -anchor nw -bordermode ignore 
     place $site_3_0.lab48 \
-        -in $site_3_0 -x 290 -y 380 -anchor nw -bordermode ignore 
+        -in $site_3_0 -x 290 -y 470 -anchor nw -bordermode ignore 
     ###################
     # SETTING GEOMETRY
     ###################
