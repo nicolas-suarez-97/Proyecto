@@ -6,6 +6,7 @@
 #    May 12, 2018 12:42:51 PM
 #    May 14, 2018 06:37:00 PM
 #    May 15, 2018 11:48:35 AM
+#    May 15, 2018 01:26:03 PM
 
 
 import sys
@@ -43,6 +44,8 @@ def set_Tk_var():
     precio = StringVar()
     global combo3
     combo3 = StringVar()
+    global ganancia
+    ganancia = StringVar()
     global prod
     prod = StringVar()
 
@@ -55,9 +58,36 @@ def calcular():
         hectareas = int(entry2.get())
         mes = combo1.get()
         tipo = combo2.get()
-    
+        ciudad = combo3.get()
+        precip = 0
 
-        if tipo == "Papa" and mes != "":
+        if mes == "Enero":
+            precip = 59
+        if mes == "Febrero":
+            precip = 123
+        if mes == "Marzo":
+            precip=122
+        if mes == "Abril":
+            precip=102
+        if mes == "Mayo":
+            precip=92
+        if mes == "Junio":
+            precip=84
+        if mes == "Julio":
+            precip=81
+        if mes == "Agosto":
+            precip=125
+        if mes == "Septiembre":
+            precip=99
+        if mes == "Octubre":
+            precip=47
+        if mes == "Noviembre":
+            precip=45
+        if mes == "Diciembre":
+            precip=50
+
+
+        if tipo == "Papa" and mes != "" and ciudad != "":
             ##REGRE.PY
             # Open a workbook
             workbook = xlrd.open_workbook('pPapa.xlsx')
@@ -74,7 +104,27 @@ def calcular():
             y = []
             i = 0
             # Retrieve the value from cell at indices (0,0)
-            for rx in range(34,46):
+            filinicio=0
+            filfin=0
+            if ciudad=="Tunja":
+                filinicio=34
+                filfin=46
+                img = PhotoImage(file="./tunja.png")
+                w.Map.configure(image=img)
+                w.Map.image=img
+            if ciudad=="Duitama":
+                filinicio=3
+                filfin=14
+                img = PhotoImage(file="./duitama.png")
+                w.Map.configure(image=img)
+                w.Map.image=img
+            if ciudad=="Sogamoso":
+                filinicio=18
+                filfin=30
+                img = PhotoImage(file="./sogamoso.png")
+                w.Map.configure(image=img)
+                w.Map.image=img
+            for rx in range(filinicio,filfin):
                 x.append(ws.cell_value(rowx=rx, colx=10))
                 y.append(ws.cell_value(rowx=rx, colx=11))
 
@@ -83,15 +133,27 @@ def calcular():
             print (x)
             predictions = model.predict(x)
             print (predictions)
-            arr = [20,15]
+            arr = [precip,precip+1]
             arr = sm.add_constant(arr)
             pre = model.predict(arr) #predecir el precio para precipitaciones = 20 y 15
-            print (pre)
+            val = hectareas * 16
+            resProd = hectareas * 16
+            total = (resProd * pre[0]*100)- inversion
+
             print (model.summary())
 
-            fig = plt.figure(figsize=(12, 14))
-            fig = sm.graphics.plot_ccpr_grid(model, fig=fig)
+            #fig = plt.figure(figsize=(12, 14))
+            #fig = sm.graphics.plot_ccpr_grid(model, fig=fig)
+
+            fig, ax = plt.subplots(figsize=(12,8))
+            ax.plot(x, y, 'o', label="data")
+            ax.plot(x, model.fittedvalues, 'r--.', label="OLS")
+            ax.legend(loc='best');
             pl.savefig("graph.png",dpi=40)
+
+            precio.set(round(pre[0]*100,2))
+            prod.set(resProd)
+            ganancia.set(round(total,2))
 
             #ASIGNAR IMAGEN
             try:
@@ -102,8 +164,9 @@ def calcular():
                 messagebox.errorwarning("Error","No se pudo graficar")
 
             #ASIGNAR VALORES DE ACUERDO A LA REGRESION
-            precio.set(inversion * hectareas)
-            prod.set("Exito")
+        #End:if
+        else:
+            messagebox.showwarning("Warning","Falta ingresar algun dato")
         #End:if
 
         if tipo == "Yuca":
