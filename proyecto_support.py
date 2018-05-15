@@ -52,6 +52,7 @@ def calcular():
         hectareas = int(entry2.get())
         mes = combo1.get()
         tipo = combo2.get()
+        
         if tipo == "Papa" and mes != "":
             ##REGRE.PY
             # Open a workbook
