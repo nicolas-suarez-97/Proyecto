@@ -5,6 +5,7 @@
 # In conjunction with Tcl version 8.6
 #    May 12, 2018 12:42:51 PM
 #    May 14, 2018 06:37:00 PM
+#    May 15, 2018 11:48:35 AM
 
 
 import sys
@@ -40,6 +41,8 @@ def set_Tk_var():
     combo2 = StringVar()
     global precio
     precio = StringVar()
+    global combo3
+    combo3 = StringVar()
     global prod
     prod = StringVar()
 
@@ -52,7 +55,8 @@ def calcular():
         hectareas = int(entry2.get())
         mes = combo1.get()
         tipo = combo2.get()
-        
+    
+
         if tipo == "Papa" and mes != "":
             ##REGRE.PY
             # Open a workbook
