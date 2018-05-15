@@ -52,56 +52,62 @@ def calcular():
         hectareas = int(entry2.get())
         mes = combo1.get()
         tipo = combo2.get()
+        if tipo == "Papa" and mes != "":
+            ##REGRE.PY
+            # Open a workbook
+            workbook = xlrd.open_workbook('pPapa.xlsx')
 
-        ##REGRE.PY
-        # Open a workbook
-        workbook = xlrd.open_workbook('pPapa.xlsx')
+            # Loads only current sheets to memory
+            workbook = xlrd.open_workbook('pPapa.xlsx', on_demand = True)
 
-        # Loads only current sheets to memory
-        workbook = xlrd.open_workbook('pPapa.xlsx', on_demand = True)
+            # Load a specific sheet by name
+            ws = workbook.sheet_by_name('BD')
 
-        # Load a specific sheet by name
-        ws = workbook.sheet_by_name('BD')
+            # Load a specific sheet by index
+            ws = workbook.sheet_by_index(0)
+            x = []
+            y = []
+            i = 0
+            # Retrieve the value from cell at indices (0,0)
+            for rx in range(34,46):
+                x.append(ws.cell_value(rowx=rx, colx=10))
+                y.append(ws.cell_value(rowx=rx, colx=11))
 
-        # Load a specific sheet by index
-        ws = workbook.sheet_by_index(0)
-        x = []
-        y = []
-        i = 0
-        # Retrieve the value from cell at indices (0,0)
-        for rx in range(34,46):
-            x.append(ws.cell_value(rowx=rx, colx=10))
-            y.append(ws.cell_value(rowx=rx, colx=11))
+            x = sm.add_constant(x)
+            model = sm.OLS(y, x).fit() ## sm.OLS(output, input)
+            print (x)
+            predictions = model.predict(x)
+            print (predictions)
+            arr = [20,15]
+            arr = sm.add_constant(arr)
+            pre = model.predict(arr) #predecir el precio para precipitaciones = 20 y 15
+            print (pre)
+            print (model.summary())
 
-        x = sm.add_constant(x)
-        model = sm.OLS(y, x).fit() ## sm.OLS(output, input)
-        print (x)
-        predictions = model.predict(x)
-        print (predictions)
-        arr = [20,15]
-        arr = sm.add_constant(arr)
-        pre = model.predict(arr) #predecir el precio para precipitaciones = 20 y 15
-        print (pre)
-        print (model.summary())
+            fig = plt.figure(figsize=(12, 14))
+            fig = sm.graphics.plot_ccpr_grid(model, fig=fig)
+            pl.savefig("graph.png",dpi=40)
 
-        fig = plt.figure(figsize=(12, 14))
-        fig = sm.graphics.plot_ccpr_grid(model, fig=fig)
-        pl.savefig("graph.png",dpi=40)
+            #ASIGNAR IMAGEN
+            try:
+                img = PhotoImage(file="./graph.png")
+                w.Label11.configure(image=img)
+                w.Label11.image=img
+            except:
+                messagebox.errorwarning("Error","No se pudo graficar")
 
-        #ASIGNAR IMAGEN
-        try:
-            img = PhotoImage(file="./graph.png")
-            w.Label11.configure(image=img)
-            w.Label11.image=img
-        except:
-            messagebox.errorwarning("Error","No se pudo graficar")
+            #ASIGNAR VALORES DE ACUERDO A LA REGRESION
+            precio.set(inversion * hectareas)
+            prod.set("Exito")
+        #End:if
 
+        if tipo == "Yuca":
+            messagebox.showinfo("APP","Estamos trabajando en la opcion de \"Yuca\"")
+        if tipo == "Cafe":
+            messagebox.showinfo("APP","Estamos trabajando en la opcion de \"Cafe\"")
     except :
         messagebox.showwarning("Warning","No ha ingresado ningun dato")
 
-    #ASIGNAR VALORES DE ACUERDO A LA REGRESION
-    precio.set(inversion * hectareas)
-    prod.set("Exito")
 
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
