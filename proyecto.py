@@ -174,12 +174,12 @@ class APP:
         self.Label11.configure(background="#ffffff")
 
         self.Map = Label(self.Frame1)
-        self.Map.place(relx=0.57, rely=0.09, height=281, width=339)
+        self.Map.place(relx=0.48, rely=0.09, height=281, width=489)
         self.Map.configure(activebackground="#f9f9f9")
         self.Map.configure(background="#ffffff")
         self.Map.configure(borderwidth="3")
         self.Map.configure(compound="center")
-        self._img1 = PhotoImage(file="./mapa.png")
+        self._img1 = PhotoImage(file="./grafica.png")
         self.Map.configure(image=self._img1)
 
         self.Button1 = Button(self.Frame1)

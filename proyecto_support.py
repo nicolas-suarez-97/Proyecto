@@ -63,28 +63,40 @@ def calcular():
 
         if mes == "Enero":
             precip = 59
+            img = PhotoImage(file="./enero.png")
         if mes == "Febrero":
             precip = 123
+            img = PhotoImage(file="./febrero.png")
         if mes == "Marzo":
             precip=122
+            img = PhotoImage(file="./marzo.png")
         if mes == "Abril":
             precip=102
+            img = PhotoImage(file="./abril.png")
         if mes == "Mayo":
             precip=92
+            img = PhotoImage(file="./mayo.png")
         if mes == "Junio":
             precip=84
+            img = PhotoImage(file="./junio.png")
         if mes == "Julio":
             precip=81
+            img = PhotoImage(file="./julio.png")
         if mes == "Agosto":
             precip=125
+            img = PhotoImage(file="./agosto.png")
         if mes == "Septiembre":
             precip=99
+            img = PhotoImage(file="./septiembre.png")
         if mes == "Octubre":
             precip=47
+            img = PhotoImage(file="./noviembre.png")
         if mes == "Noviembre":
             precip=45
+            img = PhotoImage(file="./noviembre.png")
         if mes == "Diciembre":
             precip=50
+            img = PhotoImage(file="./diciembre.png")
 
 
         if tipo == "Papa" and mes != "" and ciudad != "":
@@ -108,22 +120,13 @@ def calcular():
             filfin=0
             if ciudad=="Tunja":
                 filinicio=34
-                filfin=46
-                img = PhotoImage(file="./tunja.png")
-                w.Map.configure(image=img)
-                w.Map.image=img
+                filfin=46                            
             if ciudad=="Duitama":
                 filinicio=3
                 filfin=14
-                img = PhotoImage(file="./duitama.png")
-                w.Map.configure(image=img)
-                w.Map.image=img
             if ciudad=="Sogamoso":
                 filinicio=18
                 filfin=30
-                img = PhotoImage(file="./sogamoso.png")
-                w.Map.configure(image=img)
-                w.Map.image=img
             for rx in range(filinicio,filfin):
                 x.append(ws.cell_value(rowx=rx, colx=10))
                 y.append(ws.cell_value(rowx=rx, colx=11))
@@ -138,7 +141,7 @@ def calcular():
             pre = model.predict(arr) #predecir el precio para precipitaciones = 20 y 15
             val = hectareas * 16
             resProd = hectareas * 16
-            total = (resProd * pre[0]*100)- inversion
+            total = (resProd * pre[0])- inversion
 
             print (model.summary())
 
@@ -151,12 +154,14 @@ def calcular():
             ax.legend(loc='best');
             pl.savefig("graph.png",dpi=40)
 
-            precio.set(round(pre[0]*100,2))
+            precio.set(round(pre[0],2))
             prod.set(resProd)
             ganancia.set(round(total,2))
 
             #ASIGNAR IMAGEN
             try:
+                w.Map.configure(image=img)
+                w.Map.image=img
                 img = PhotoImage(file="./graph.png")
                 w.Label11.configure(image=img)
                 w.Label11.image=img
