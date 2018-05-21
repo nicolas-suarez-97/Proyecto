@@ -127,6 +127,7 @@ def calcular():
             if ciudad=="Sogamoso":
                 filinicio=18
                 filfin=30
+                
             for rx in range(filinicio,filfin):
                 x.append(ws.cell_value(rowx=rx, colx=10))
                 y.append(ws.cell_value(rowx=rx, colx=11))
