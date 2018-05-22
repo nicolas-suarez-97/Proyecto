@@ -100,6 +100,7 @@ def calcular():
 
 
         if tipo == "Papa" and mes != "" and ciudad != "":
+
             ##REGRE.PY
             # Open a workbook
             workbook = xlrd.open_workbook('pPapa.xlsx')
@@ -120,14 +121,14 @@ def calcular():
             filfin=0
             if ciudad=="Tunja":
                 filinicio=34
-                filfin=46                            
+                filfin=46
             if ciudad=="Duitama":
                 filinicio=3
                 filfin=14
             if ciudad=="Sogamoso":
                 filinicio=18
                 filfin=30
-                
+
             for rx in range(filinicio,filfin):
                 x.append(ws.cell_value(rowx=rx, colx=10))
                 y.append(ws.cell_value(rowx=rx, colx=11))
@@ -140,9 +141,12 @@ def calcular():
             arr = [precip,precip+1]
             arr = sm.add_constant(arr)
             pre = model.predict(arr) #predecir el precio para precipitaciones = 20 y 15
+            auxiliar = pre[0]*30*hectareas*10000
             val = hectareas * 16
-            resProd = hectareas * 16
-            total = (resProd * pre[0])- inversion
+            resProd = (auxiliar*350000)/101150000
+            a = (resProd * pre[0])- inversion
+            total= a - inversion
+            print("AQUI")
 
             print (model.summary())
 
@@ -155,9 +159,9 @@ def calcular():
             ax.legend(loc='best');
             pl.savefig("graph.png",dpi=40)
 
-            precio.set(round(pre[0],2))
-            prod.set(resProd)
-            ganancia.set(round(total,2))
+            precio.set(round(pre[0]*100,0))
+            prod.set(round(resProd,0))
+            ganancia.set(round(total,0))
 
             #ASIGNAR IMAGEN
             try:
@@ -180,7 +184,7 @@ def calcular():
         if tipo == "Cafe":
             messagebox.showinfo("APP","Estamos trabajando en la opcion de \"Cafe\"")
     except :
-        messagebox.showwarning("Warning","No ha ingresado ningun dato")
+        messagebox.showwarning("Warning","Error de datos")
 
 
 def init(top, gui, *args, **kwargs):
