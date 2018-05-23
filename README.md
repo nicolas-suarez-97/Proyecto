@@ -8,4 +8,4 @@
 
 
 ## Interfaz
-![alt text](https://github.com/nicolas-suarez-97/PARCIAL-2/blob/master/Punto%201/Gr%C3%A1fica.png)
+![alt text](https://github.com/nicolas-suarez-97/Proyecto/blob/master/Interfaz/Captura%20de%20pantalla%20de%202018-05-22%2021-48-32.png)
