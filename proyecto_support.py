@@ -141,11 +141,13 @@ def calcular():
             arr = [precip,precip+1]
             arr = sm.add_constant(arr)
             pre = model.predict(arr) #predecir el precio para precipitaciones = 20 y 15
-            auxiliar = pre[0]*30*hectareas*10000
+
+            auxiliar = pre[0]*30*hectareas
             val = hectareas * 16
-            resProd = (auxiliar*350000)/101150000
-            a = (resProd * pre[0])- inversion
-            total= a - inversion
+            resProd = (auxiliar*35)/10150
+            #resprod = resProd/50
+            a = inversion - resProd
+
             print("AQUI")
 
             print (model.summary())
@@ -161,7 +163,7 @@ def calcular():
 
             precio.set(round(pre[0]*100,0))
             prod.set(round(resProd,0))
-            ganancia.set(round(total,0))
+            ganancia.set(round(a,0))
 
             #ASIGNAR IMAGEN
             try:
