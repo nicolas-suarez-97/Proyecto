@@ -54,8 +54,8 @@ class APP:
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
         _compcolor = '#d9d9d9' # X11 color: 'gray85'
-        _ana1color = '#d9d9d9' # X11 color: 'gray85' 
-        _ana2color = '#d9d9d9' # X11 color: 'gray85' 
+        _ana1color = '#d9d9d9' # X11 color: 'gray85'
+        _ana2color = '#d9d9d9' # X11 color: 'gray85'
         self.style = ttk.Style()
         if sys.platform == "win32":
             self.style.theme_use('winnative')
@@ -179,7 +179,7 @@ class APP:
         self.Map.configure(background="#ffffff")
         self.Map.configure(borderwidth="3")
         self.Map.configure(compound="center")
-        self._img1 = PhotoImage(file="./grafica.png")
+        self._img1 = PhotoImage(file="./Imagenes/grafica.png")
         self.Map.configure(image=self._img1)
 
         self.Button1 = Button(self.Frame1)
@@ -246,6 +246,3 @@ class APP:
 
 if __name__ == '__main__':
     vp_start_gui()
-
-
-

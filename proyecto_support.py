@@ -63,40 +63,40 @@ def calcular():
 
         if mes == "Enero":
             precip = 59
-            img = PhotoImage(file="./enero.png")
+            img = PhotoImage(file="./Imagenes/enero.png")
         if mes == "Febrero":
             precip = 123
-            img = PhotoImage(file="./febrero.png")
+            img = PhotoImage(file="./Imagenes/febrero.png")
         if mes == "Marzo":
             precip=122
-            img = PhotoImage(file="./marzo.png")
+            img = PhotoImage(file="./Imagenes/marzo.png")
         if mes == "Abril":
             precip=102
-            img = PhotoImage(file="./abril.png")
+            img = PhotoImage(file="./Imagenes/abril.png")
         if mes == "Mayo":
             precip=92
-            img = PhotoImage(file="./mayo.png")
+            img = PhotoImage(file="./Imagenes/mayo.png")
         if mes == "Junio":
             precip=84
-            img = PhotoImage(file="./junio.png")
+            img = PhotoImage(file="./Imagenes/junio.png")
         if mes == "Julio":
             precip=81
-            img = PhotoImage(file="./julio.png")
+            img = PhotoImage(file="./Imagenes/julio.png")
         if mes == "Agosto":
             precip=125
-            img = PhotoImage(file="./agosto.png")
+            img = PhotoImage(file="./Imagenes/agosto.png")
         if mes == "Septiembre":
             precip=99
-            img = PhotoImage(file="./septiembre.png")
+            img = PhotoImage(file="./Imagenes/septiembre.png")
         if mes == "Octubre":
             precip=47
-            img = PhotoImage(file="./noviembre.png")
+            img = PhotoImage(file="./Imagenes/noviembre.png")
         if mes == "Noviembre":
             precip=45
-            img = PhotoImage(file="./noviembre.png")
+            img = PhotoImage(file="./Imagenes/noviembre.png")
         if mes == "Diciembre":
             precip=50
-            img = PhotoImage(file="./diciembre.png")
+            img = PhotoImage(file="./Imagenes/diciembre.png")
 
 
         if tipo == "Papa" and mes != "" and ciudad != "":
